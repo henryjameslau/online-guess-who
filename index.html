@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Online guess who with digital publishing</title>
+  <meta name="description" content="Online guess who with digital publishing">
+  <meta name="author" content="Henry lau">
+
+  <meta property="og:title" content="Online guess who with digital publishing">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Online guess who with digital publishing">
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: repeat(7, 256px [col-start]);
+      grid-template-rows: repeat(4, 256px [row-start]);
+    }
+
+    .item {
+      background-color: yellow;
+      height: 256px;
+      width: 256px;
+      padding: 10px 10px 10px 10px;
+    }
+
+    .flipped {
+      transform: translate(-50%, -50%) transform-style: preserve-3d perspective: 600px transition: .5s
+      &:click transform: rotateX(-180deg) &:click transform: rotateX(0deg)
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container"></div>
+
+
+  <script src="https://cdn.ons.gov.uk/vendor/d3/4.13.0/d3.min.js"></script>
+
+  <script>
+    d3.select(".container").selectAll('div').data(d3.range(0, 28)).enter()
+      .append('div')
+      .attr('class', 'item')
+      .append('img')
+
+      .attr('src', function(d) {
+        return "pics/guesswho" + d + ".png"
+      })
+      .attr("width", 256)
+      .attr("height", 256)
+
+    d3.selectAll('.item').on('click', function(d){
+      d3.select(this).transition().style('opacity',0)
+    })
+  </script>
+</body>
+
+</html>
