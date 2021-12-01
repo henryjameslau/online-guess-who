@@ -27,17 +27,19 @@
       padding: 10px 10px 10px 10px;
     }
 
-    .flipped {
-      transform: translate(-50%, -50%) transform-style: preserve-3d perspective: 600px transition: .5s
-      &:click transform: rotateX(-180deg) &:click transform: rotateX(0deg)
+    #yours *{
+      /* display:block; */
+      padding-top:50px;
+      margin:0 auto;
     }
+
   </style>
 
 </head>
 
 <body>
   <div class="container"></div>
-
+  <div id="yours"><p>Your person</p></div>
 
   <script src="https://cdn.ons.gov.uk/vendor/d3/4.13.0/d3.min.js"></script>
 
@@ -56,6 +58,18 @@
     d3.selectAll('.item').on('click', function(d){
       d3.select(this).transition().style('opacity',0)
     })
+
+    var names=["Callum","Carlie","Claire","Dan","Darren","Erin","Frank","Giacomo","Henry L","Jac","James","Zoe","John","Kieran","Lauren","Liz","Meg","Peter","Rachel","Rob","Sam B","Sam C","Sam R","Shanna","Simon","Theo","Tim","Henry P"]
+
+    var random = Math.floor(Math.random()*28)
+    d3.select('#yours').append('img').attr('src',function(){
+      return "pics/guesswho"+random+".png"
+    })
+    .attr("width", 256)
+    .attr("height", 256)
+    d3.select('#yours').append('h2').text(names[random])
+
+
   </script>
 </body>
 
